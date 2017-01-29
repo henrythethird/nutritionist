@@ -36,6 +36,11 @@ abstract class Unit
     private $baseRatio;
 
     /**
+     * @ORM\Column(type="boolean")
+     */
+    private $base;
+
+    /**
      * @return int
      */
     public function getId()
@@ -73,6 +78,22 @@ abstract class Unit
     public function setBaseRatio($baseRatio)
     {
         $this->baseRatio = $baseRatio;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isBase()
+    {
+        return $this->base;
+    }
+
+    /**
+     * @param boolean $base
+     */
+    public function setBase($base)
+    {
+        $this->base = $base;
     }
 
     public function __toString()
