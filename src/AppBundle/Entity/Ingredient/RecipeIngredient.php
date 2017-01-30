@@ -33,6 +33,11 @@ class RecipeIngredient
      */
     private $measure;
 
+    public function __construct()
+    {
+        $this->measure = new MeasureEmbeddable();
+    }
+
     /**
      * @return int
      */

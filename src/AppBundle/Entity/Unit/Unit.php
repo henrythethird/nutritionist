@@ -22,23 +22,23 @@ abstract class Unit
      * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Column(type="integer")
      */
-    private $id;
+    protected $id;
 
     /**
      * @ORM\Column(type="string", unique=true)
      */
-    private $name;
+    protected $name;
 
     /**
      * @ORM\Column(type="decimal", precision=12, scale=6)
      * @Assert\GreaterThan(0)
      */
-    private $baseRatio;
+    protected $baseRatio;
 
     /**
      * @ORM\Column(type="boolean")
      */
-    private $base;
+    protected $base;
 
     /**
      * @return int

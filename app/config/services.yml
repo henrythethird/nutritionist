@@ -1,3 +1,44 @@
 services:
-    app.convert:
+    app.service.convert:
         class: AppBundle\Service\UnitConvertService
+
+    app.listener.unit:
+        class: AppBundle\Listener\UnitListener
+        arguments: ['@service_container']
+        tags:
+            - { name: doctrine.event_listener, event: preUpdate }
+            - { name: doctrine.event_listener, event: postFlush }
+
+    app.admin.ingredient:
+        class: AppBundle\Admin\IngredientAdmin
+        arguments: [~, AppBundle\Entity\Ingredient\Ingredient, ~]
+        calls:
+            - [setSubClasses, [{ Weight: AppBundle\Entity\Ingredient\WeightIngredient, Volume: AppBundle\Entity\Ingredient\VolumeIngredient }]]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Ingredient, group: Ingredient }
+
+    app.admin.unit:
+        class: AppBundle\Admin\UnitAdmin
+        arguments: [~, AppBundle\Entity\Unit\Unit, ~]
+        calls:
+            - [setSubClasses, [{ Weight: AppBundle\Entity\Unit\WeightUnit, Volume: AppBundle\Entity\Unit\VolumeUnit }]]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Unit, group: Ingredient }
+
+    app.admin.recipe:
+        class: AppBundle\Admin\RecipeAdmin
+        arguments: [~, AppBundle\Entity\Ingredient\Recipe, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Recipe, group: Ingredient }
+
+    app.admin.recipe_ingredient:
+        class: AppBundle\Admin\RecipeIngredientAdmin
+        arguments: [~, AppBundle\Entity\Ingredient\RecipeIngredient, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm }
+
+    app.admin.measure_embeddable:
+        class: AppBundle\Admin\MeasureAdmin
+        arguments: [~, AppBundle\Entity\Embeddable\MeasureEmbeddable, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm }

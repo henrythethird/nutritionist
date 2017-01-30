@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
 class MeasureEmbeddable
 {
     /**
-     * @ORM\Column(precision=12, scale=6)
+     * @ORM\Column(type="float", precision=12, scale=6)
      */
     private $amount;
 

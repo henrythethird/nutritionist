@@ -3,9 +3,8 @@
 namespace AppBundle\Listener;
 
 use AppBundle\Entity\Unit\Unit;
-use AppBundle\Entity\Unit\VolumeUnit;
-use AppBundle\Entity\Unit\WeightUnit;
-use Doctrine\Common\Persistence\Event\PreUpdateEventArgs;
+use Doctrine\ORM\Event\PostFlushEventArgs;
+use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class UnitListener
@@ -22,14 +21,12 @@ class UnitListener
 
     public function preUpdate(PreUpdateEventArgs $args)
     {
-        $unit = $args->getObject();
 
-        if (!$unit instanceof Unit) {
-            return;
-        }
+    }
 
-        $this->removeBase($unit instanceof VolumeUnit ? VolumeUnit::class : WeightUnit::class);
-        $unit->setBase(true);
+    public function postFlush(PostFlushEventArgs $args)
+    {
+
     }
 
     private function removeBase($class)

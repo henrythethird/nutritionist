@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Recipe extends Ingredient
 {
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Ingredient\RecipeIngredient", mappedBy="ingredient")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Ingredient\RecipeIngredient", mappedBy="ingredient", cascade={"persist", "remove"})
      */
     private $recipeIngredients;
 
@@ -39,7 +39,7 @@ class Recipe extends Ingredient
 
     public function addRecipeIngredient(RecipeIngredient $recipeIngredient)
     {
-        $recipeIngredient->setRecipe($recipeIngredient);
+        $recipeIngredient->setRecipe($this);
         $this->recipeIngredients->add($recipeIngredient);
     }
 

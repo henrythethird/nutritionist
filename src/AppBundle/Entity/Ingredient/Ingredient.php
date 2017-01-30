@@ -93,6 +93,6 @@ abstract class Ingredient
 
     public function __toString()
     {
-        $this->getName();
+        return $this->getName();
     }
 }
