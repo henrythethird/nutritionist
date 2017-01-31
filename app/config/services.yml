@@ -15,7 +15,7 @@ services:
         calls:
             - [setSubClasses, [{ Weight: AppBundle\Entity\Ingredient\WeightIngredient, Volume: AppBundle\Entity\Ingredient\VolumeIngredient }]]
         tags:
-            - { name: sonata.admin, manager_type: orm, label: Ingredient, group: Ingredient }
+            - { name: sonata.admin, manager_type: orm, label: Ingredient, group: Base }
 
     app.admin.unit:
         class: AppBundle\Admin\UnitAdmin
@@ -23,22 +23,34 @@ services:
         calls:
             - [setSubClasses, [{ Weight: AppBundle\Entity\Unit\WeightUnit, Volume: AppBundle\Entity\Unit\VolumeUnit }]]
         tags:
-            - { name: sonata.admin, manager_type: orm, label: Unit, group: Ingredient }
+            - { name: sonata.admin, manager_type: orm, label: Unit, group: Base }
 
     app.admin.recipe:
         class: AppBundle\Admin\RecipeAdmin
         arguments: [~, AppBundle\Entity\Ingredient\Recipe, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, label: Recipe, group: Ingredient }
+            - { name: sonata.admin, manager_type: orm, label: Recipe, group: Base }
 
     app.admin.recipe_ingredient:
         class: AppBundle\Admin\RecipeIngredientAdmin
         arguments: [~, AppBundle\Entity\Ingredient\RecipeIngredient, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm }
+            - { name: sonata.admin, manager_type: orm, show_in_dashboard: false }
 
     app.admin.measure_embeddable:
         class: AppBundle\Admin\MeasureAdmin
         arguments: [~, AppBundle\Entity\Embeddable\MeasureEmbeddable, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm }
+            - { name: sonata.admin, manager_type: orm, show_in_dashboard: false }
+
+    app.admin.position_type:
+        class: AppBundle\Admin\PositionTypeAdmin
+        arguments: [~, AppBundle\Entity\Day\PositionType, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Position Type, group: Base }
+
+    app.admin.day_position:
+        class: AppBundle\Admin\DayPositionAdmin
+        arguments: [~, AppBundle\Entity\Day\DayPosition, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Day Position, group: Day }

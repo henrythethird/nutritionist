@@ -2,21 +2,16 @@
 
 namespace AppBundle\Admin;
 
-use AppBundle\Entity\Unit\Unit;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 
-class MeasureAdmin extends AbstractAdmin
+class PositionTypeAdmin extends AbstractAdmin
 {
     protected function configureFormFields(FormMapper $formMapper)
     {
-        $formMapper
-            ->add('amount')
-            ->add('unit', 'sonata_type_model', [
-                'class' => Unit::class
-            ]);
+        $formMapper->add('name');
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
@@ -26,6 +21,7 @@ class MeasureAdmin extends AbstractAdmin
 
     protected function configureListFields(ListMapper $listMapper)
     {
-        $listMapper->addIdentifier('name');
+        $listMapper
+            ->addIdentifier('name');
     }
 }

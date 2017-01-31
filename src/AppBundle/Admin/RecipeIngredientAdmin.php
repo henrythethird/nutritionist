@@ -16,7 +16,8 @@ class RecipeIngredientAdmin extends AbstractAdmin
     {
         $formMapper->add('ingredient')
             ->add('measure.amount', NumberType::class)
-            ->add('measure.unit', EntityType::class, [
+            ->add('measure.unit', 'sonata_type_model', [
+                'by_reference' => true,
                 'class' => Unit::class
             ])
         ;

@@ -9,5 +9,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class VolumeIngredient extends Ingredient
 {
-
+    public function __toString()
+    {
+        return "V - ".$this->getName();
+    }
 }

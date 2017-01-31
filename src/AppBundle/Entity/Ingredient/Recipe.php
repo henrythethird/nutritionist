@@ -11,9 +11,19 @@ use Doctrine\ORM\Mapping as ORM;
 class Recipe extends Ingredient
 {
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Ingredient\RecipeIngredient", mappedBy="ingredient", cascade={"persist", "remove"})
+     * @ORM\OneToMany(
+     *     targetEntity="AppBundle\Entity\Ingredient\RecipeIngredient",
+     *     mappedBy="recipe",
+     *     cascade={"persist", "remove"},
+     *     orphanRemoval=true
+     * )
      */
     private $recipeIngredients;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $numberOfServings;
 
     public function __construct()
     {
@@ -46,5 +56,26 @@ class Recipe extends Ingredient
     public function removeRecipeIngredient(RecipeIngredient $recipeIngredient)
     {
         $this->recipeIngredients->removeElement($recipeIngredient);
+    }
+
+    /**
+     * @return integer
+     */
+    public function getNumberOfServings()
+    {
+        return $this->numberOfServings;
+    }
+
+    /**
+     * @param integer $numberOfServings
+     */
+    public function setNumberOfServings($numberOfServings)
+    {
+        $this->numberOfServings = $numberOfServings;
+    }
+
+    public function __toString()
+    {
+        return "R - ".$this->getName();
     }
 }

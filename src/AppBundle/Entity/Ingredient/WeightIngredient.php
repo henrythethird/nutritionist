@@ -9,5 +9,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class WeightIngredient extends Ingredient
 {
-
+    public function __toString()
+    {
+        return "W - ".$this->getName();
+    }
 }

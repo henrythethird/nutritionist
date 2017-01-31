@@ -35,9 +35,15 @@ abstract class Ingredient
      */
     protected $ingredientRecipes;
 
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Day\DayPosition", mappedBy="ingredient")
+     */
+    protected $dayPositions;
+
     public function __construct()
     {
         $this->ingredientRecipes = new ArrayCollection();
+        $this->dayPositions = new ArrayCollection();
     }
 
     /**
