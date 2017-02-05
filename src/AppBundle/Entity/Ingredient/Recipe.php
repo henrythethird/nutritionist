@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity\Ingredient;
 
+use AppBundle\Strategy\ServingStrategy;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -77,5 +78,10 @@ class Recipe extends Ingredient
     public function __toString()
     {
         return "R - ".$this->getName();
+    }
+
+    public function getStrategy()
+    {
+        return new ServingStrategy();
     }
 }

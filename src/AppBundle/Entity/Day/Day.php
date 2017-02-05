@@ -2,15 +2,15 @@
 
 namespace AppBundle\Entity\Day;
 
+
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity
  * @ORM\Table
  */
-class PositionType
+class Day
 {
     /**
      * @ORM\Id
@@ -20,17 +20,16 @@ class PositionType
     private $id;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="date", unique=true)
      */
-    private $name;
+    private $date;
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    private $position = 0;
-
-    /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Day\Position", mappedBy="type")
+     * @ORM\OneToMany(
+     *     targetEntity="AppBundle\Entity\Day\Position",
+     *     mappedBy="day",
+     *     cascade={"persist", "remove"
+     * })
      */
     private $positions;
 
@@ -40,7 +39,7 @@ class PositionType
     }
 
     /**
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -48,35 +47,19 @@ class PositionType
     }
 
     /**
-     * @return string
+     * @return \DateTime
      */
-    public function getName()
+    public function getDate()
     {
-        return $this->name;
+        return $this->date;
     }
 
     /**
-     * @param string $name
+     * @param \DateTime $date
      */
-    public function setName($name)
+    public function setDate($date)
     {
-        $this->name = $name;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getPosition()
-    {
-        return $this->position;
-    }
-
-    /**
-     * @param integer $position
-     */
-    public function setPosition($position)
-    {
-        $this->position = $position;
+        $this->date = $date;
     }
 
     /**
@@ -95,8 +78,14 @@ class PositionType
         $this->positions = $positions;
     }
 
-    public function __toString()
+    public function addPosition(Position $position)
     {
-        return $this->getName();
+        $position->setDay($this);
+        $this->positions->add($position);
+    }
+
+    public function removePosition(Position $position)
+    {
+        $this->positions->removeElement($position);
     }
 }

@@ -4,6 +4,7 @@ namespace AppBundle\Service;
 
 use AppBundle\Entity\Embeddable\MeasureEmbeddable;
 use AppBundle\Entity\Unit\Unit;
+use AppBundle\Exception\InvalidConversionException;
 
 class UnitConvertService
 {
@@ -11,12 +12,13 @@ class UnitConvertService
      * @param MeasureEmbeddable $measure
      * @param Unit $toUnit
      * @return MeasureEmbeddable
+     * @throws InvalidConversionException
      */
     public function convert(MeasureEmbeddable $measure, Unit $toUnit)
     {
         $fromUnit = $measure->getUnit();
         if (!$this->canConvert($fromUnit, $toUnit)) {
-            throw new \InvalidArgumentException(sprintf(
+            throw new InvalidConversionException(sprintf(
                 "Cannot convert from %s to %s", $fromUnit, $toUnit
             ));
         }

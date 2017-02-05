@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity\Day;
 
+use AppBundle\Entity\Embeddable\MeasureEmbeddable;
 use AppBundle\Entity\Ingredient\Ingredient;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -9,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\Table(name="day_position")
  */
-class DayPosition
+class Position
 {
     /**
      * @ORM\Id
@@ -19,24 +20,29 @@ class DayPosition
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Day\PositionType", inversedBy="dayPositions")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Day\Day", inversedBy="positions")
+     */
+    private $day;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Day\PositionType", inversedBy="positions")
      */
     private $type;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Embedded(class="AppBundle\Entity\Embeddable\MeasureEmbeddable")
      */
-    private $date;
+    private $measure;
 
     /**
-     * @ORM\Column(type="float")
-     */
-    private $numberOfServings;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Ingredient\Ingredient", inversedBy="dayPositions")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Ingredient\Ingredient", inversedBy="positions")
      */
     private $ingredient;
+
+    public function __construct()
+    {
+        $this->measure = new MeasureEmbeddable();
+    }
 
     /**
      * @return integer
@@ -63,35 +69,35 @@ class DayPosition
     }
 
     /**
-     * @return \DateTime
+     * @return Day
      */
-    public function getDate()
+    public function getDay()
     {
-        return $this->date;
+        return $this->day;
     }
 
     /**
-     * @param \DateTime $date
+     * @param Day $day
      */
-    public function setDate($date)
+    public function setDay($day)
     {
-        $this->date = $date;
+        $this->day = $day;
     }
 
     /**
-     * @return integer
+     * @return MeasureEmbeddable
      */
-    public function getNumberOfServings()
+    public function getMeasure()
     {
-        return $this->numberOfServings;
+        return $this->measure;
     }
 
     /**
-     * @param integer $numberOfServings
+     * @param MeasureEmbeddable $measure
      */
-    public function setNumberOfServings($numberOfServings)
+    public function setMeasure($measure)
     {
-        $this->numberOfServings = $numberOfServings;
+        $this->measure = $measure;
     }
 
     /**

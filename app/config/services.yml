@@ -51,6 +51,12 @@ services:
 
     app.admin.day_position:
         class: AppBundle\Admin\DayPositionAdmin
-        arguments: [~, AppBundle\Entity\Day\DayPosition, ~]
+        arguments: [~, AppBundle\Entity\Day\Position, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, label: Day Position, group: Day }
+            - { name: sonata.admin, manager_type: orm, label: Position, group: Day }
+
+    app.admin.day:
+        class: AppBundle\Admin\DayAdmin
+        arguments: [~, AppBundle\Entity\Day\Day, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Day, group: Day }

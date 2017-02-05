@@ -12,17 +12,9 @@ class DayPositionAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('date', 'sonata_type_datetime_picker', [
-                'required' => false,
-                'format' => 'dd.MM.yyyy',
-                'attr' => [
-                    'data-date-format' => 'DD.MM.YYYY',
-                ],
-            ])
             ->add('type', null, [], [
                 'allow_add' => true
             ])
-            ->add('numberOfServings')
             ->add('ingredient')
         ;
     }
@@ -36,7 +28,6 @@ class DayPositionAdmin extends AbstractAdmin
     {
         $listMapper
             ->addIdentifier('id')
-            ->add('date')
             ->add('type')
             ->add('ingredient')
         ;

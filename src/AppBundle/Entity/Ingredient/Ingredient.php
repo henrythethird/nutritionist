@@ -2,6 +2,8 @@
 
 namespace AppBundle\Entity\Ingredient;
 
+use AppBundle\Entity\Embeddable\BaseNutritionEmbeddable;
+use AppBundle\Strategy\StrategyInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -31,19 +33,25 @@ abstract class Ingredient
     protected $name;
 
     /**
+     * @ORM\Embedded(class="AppBundle\Entity\Embeddable\BaseNutritionEmbeddable")
+     */
+    protected $nutrition;
+
+    /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Ingredient\RecipeIngredient", mappedBy="ingredient")
      */
     protected $ingredientRecipes;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Day\DayPosition", mappedBy="ingredient")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Day\Position", mappedBy="ingredient")
      */
-    protected $dayPositions;
+    protected $positions;
 
     public function __construct()
     {
         $this->ingredientRecipes = new ArrayCollection();
-        $this->dayPositions = new ArrayCollection();
+        $this->positions = new ArrayCollection();
+        $this->nutrition = new BaseNutritionEmbeddable();
     }
 
     /**
@@ -68,6 +76,22 @@ abstract class Ingredient
     public function setName($name)
     {
         $this->name = $name;
+    }
+
+    /**
+     * @return BaseNutritionEmbeddable
+     */
+    public function getNutrition()
+    {
+        return $this->nutrition;
+    }
+
+    /**
+     * @param BaseNutritionEmbeddable $nutrition
+     */
+    public function setNutrition($nutrition)
+    {
+        $this->nutrition = $nutrition;
     }
 
     /**
@@ -101,4 +125,9 @@ abstract class Ingredient
     {
         return $this->getName();
     }
+
+    /**
+     * @return StrategyInterface
+     */
+    public abstract function getStrategy();
 }
