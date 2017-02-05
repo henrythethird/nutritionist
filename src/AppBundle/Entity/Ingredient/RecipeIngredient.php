@@ -2,7 +2,7 @@
 
 namespace AppBundle\Entity\Ingredient;
 
-use AppBundle\Entity\Embeddable\MeasureEmbeddable;
+use AppBundle\Entity\Measure;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -29,13 +29,13 @@ class RecipeIngredient
     private $ingredient;
 
     /**
-     * @ORM\Embedded(class="AppBundle\Entity\Embeddable\MeasureEmbeddable")
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Measure", cascade={"persist", "remove"})
      */
     private $measure;
 
     public function __construct()
     {
-        $this->measure = new MeasureEmbeddable();
+        $this->measure = new Measure();
     }
 
     /**
@@ -54,9 +54,6 @@ class RecipeIngredient
         return $this->recipe;
     }
 
-    /**
-     * @param Recipe $recipe
-     */
     public function setRecipe(Recipe $recipe)
     {
         $this->recipe = $recipe;
@@ -70,26 +67,20 @@ class RecipeIngredient
         return $this->ingredient;
     }
 
-    /**
-     * @param Ingredient $ingredient
-     */
     public function setIngredient(Ingredient $ingredient)
     {
         $this->ingredient = $ingredient;
     }
 
     /**
-     * @return MeasureEmbeddable
+     * @return Measure
      */
     public function getMeasure()
     {
         return $this->measure;
     }
 
-    /**
-     * @param MeasureEmbeddable $measure
-     */
-    public function setMeasure($measure)
+    public function setMeasure(Measure $measure)
     {
         $this->measure = $measure;
     }

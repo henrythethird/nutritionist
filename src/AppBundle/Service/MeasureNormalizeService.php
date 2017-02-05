@@ -2,7 +2,7 @@
 
 namespace AppBundle\Service;
 
-use AppBundle\Entity\Embeddable\MeasureEmbeddable;
+use AppBundle\Entity\Measure;
 use Doctrine\ORM\EntityManagerInterface;
 
 class MeasureNormalizeService
@@ -17,7 +17,7 @@ class MeasureNormalizeService
         $this->entityManager = $entityManager;
     }
 
-    public function normalize(MeasureEmbeddable $measure)
+    public function normalize(Measure $measure)
     {
 
     }

@@ -2,8 +2,8 @@
 
 namespace AppBundle\Entity\Day;
 
-use AppBundle\Entity\Embeddable\MeasureEmbeddable;
 use AppBundle\Entity\Ingredient\Ingredient;
+use AppBundle\Entity\Measure;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -30,7 +30,7 @@ class Position
     private $type;
 
     /**
-     * @ORM\Embedded(class="AppBundle\Entity\Embeddable\MeasureEmbeddable")
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Measure", cascade={"persist", "remove"})
      */
     private $measure;
 
@@ -41,7 +41,7 @@ class Position
 
     public function __construct()
     {
-        $this->measure = new MeasureEmbeddable();
+        $this->measure = new Measure();
     }
 
     /**
@@ -85,7 +85,7 @@ class Position
     }
 
     /**
-     * @return MeasureEmbeddable
+     * @return Measure
      */
     public function getMeasure()
     {
@@ -93,7 +93,7 @@ class Position
     }
 
     /**
-     * @param MeasureEmbeddable $measure
+     * @param Measure $measure
      */
     public function setMeasure($measure)
     {

@@ -9,7 +9,6 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table()
  * @ORM\InheritanceType("SINGLE_TABLE")
  * @ORM\DiscriminatorColumn(name="discr", type="string")
  * @ORM\DiscriminatorMap({
@@ -28,6 +27,11 @@ abstract class Ingredient
     protected $id;
 
     /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    protected $importId;
+
+    /**
      * @ORM\Column(type="string")
      */
     protected $name;
@@ -36,6 +40,11 @@ abstract class Ingredient
      * @ORM\Embedded(class="AppBundle\Entity\Embeddable\BaseNutritionEmbeddable")
      */
     protected $nutrition;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    protected $branded;
 
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Ingredient\RecipeIngredient", mappedBy="ingredient")
@@ -52,6 +61,7 @@ abstract class Ingredient
         $this->ingredientRecipes = new ArrayCollection();
         $this->positions = new ArrayCollection();
         $this->nutrition = new BaseNutritionEmbeddable();
+        $this->branded = false;
     }
 
     /**
@@ -60,6 +70,22 @@ abstract class Ingredient
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @return integer
+     */
+    public function getImportId()
+    {
+        return $this->importId;
+    }
+
+    /**
+     * @param integer $importId
+     */
+    public function setImportId($importId)
+    {
+        $this->importId = $importId;
     }
 
     /**
@@ -92,6 +118,22 @@ abstract class Ingredient
     public function setNutrition($nutrition)
     {
         $this->nutrition = $nutrition;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isBranded()
+    {
+        return $this->branded;
+    }
+
+    /**
+     * @param boolean $branded
+     */
+    public function setBranded($branded)
+    {
+        $this->branded = $branded;
     }
 
     /**

@@ -14,9 +14,7 @@ class MeasureAdmin extends AbstractAdmin
     {
         $formMapper
             ->add('amount')
-            ->add('unit', 'sonata_type_model', [
-                'class' => Unit::class
-            ]);
+            ->add('unit');
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)

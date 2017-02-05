@@ -1,15 +1,23 @@
 <?php
 
-namespace AppBundle\Entity\Embeddable;
+namespace AppBundle\Entity;
 
 use AppBundle\Entity\Unit\Unit;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Embeddable()
+ * @ORM\Entity
+ * @ORM\Table
  */
-class MeasureEmbeddable
+class Measure
 {
+    /**
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\Column(type="integer")
+     */
+    private $id;
+
     /**
      * @ORM\Column(type="float", precision=12, scale=6)
      */
@@ -24,6 +32,14 @@ class MeasureEmbeddable
     {
         $this->amount = $amount;
         $this->unit = $unit;
+    }
+
+    /**
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 
     /**

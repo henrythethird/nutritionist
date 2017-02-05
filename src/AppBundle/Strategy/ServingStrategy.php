@@ -2,13 +2,15 @@
 
 namespace AppBundle\Strategy;
 
-
-use AppBundle\Entity\Embeddable\MeasureEmbeddable;
+use AppBundle\Entity\Ingredient\Recipe;
+use AppBundle\Entity\Ingredient\RecipeIngredient;
 
 class ServingStrategy implements StrategyInterface
 {
-    public function calculateMultiplier(MeasureEmbeddable $measure)
+    public function calculateMultiplier(RecipeIngredient $recipeIngredient)
     {
-        return $measure->getAmount();
+        /** @var Recipe $recipe */
+        $recipe = $recipeIngredient->getIngredient();
+        return $recipeIngredient->getMeasure()->getAmount() / $recipe->getNumberOfServings();
     }
 }

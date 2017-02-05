@@ -34,7 +34,7 @@ class SummarizeService
         foreach ($recipe->getRecipeIngredients() as $recipeIngredient) {
             $strategy = $recipeIngredient->getIngredient()->getStrategy();
 
-            $multiplier = $strategy->calculateMultiplier($recipeIngredient->getMeasure());
+            $multiplier = $strategy->calculateMultiplier($recipeIngredient);
 
             $nutrition = clone $recipeIngredient->getIngredient()->getNutrition();
             $nutrition->multiply($multiplier);

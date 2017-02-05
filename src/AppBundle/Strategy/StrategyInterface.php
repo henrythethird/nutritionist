@@ -2,9 +2,9 @@
 
 namespace AppBundle\Strategy;
 
-use AppBundle\Entity\Embeddable\MeasureEmbeddable;
+use AppBundle\Entity\Ingredient\RecipeIngredient;
 
 interface StrategyInterface
 {
-    public function calculateMultiplier(MeasureEmbeddable $measure);
+    public function calculateMultiplier(RecipeIngredient $recipeIngredient);
 }

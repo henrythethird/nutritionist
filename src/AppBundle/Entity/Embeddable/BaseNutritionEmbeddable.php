@@ -13,25 +13,46 @@ class BaseNutritionEmbeddable implements ArraySerializable
     /**
      * @ORM\Column(type="decimal", precision=12, scale=6)
      */
-    private $starch;
+    private $carbs = 0;
 
     /**
      * @ORM\Column(type="decimal", precision=12, scale=6)
      */
-    private $protein;
+    private $starch = 0;
 
     /**
      * @ORM\Column(type="decimal", precision=12, scale=6)
      */
-    private $fat;
+    private $protein = 0;
 
     /**
      * @ORM\Column(type="decimal", precision=12, scale=6)
      */
-    private $calories;
+    private $fat = 0;
 
     /**
-     * @return mixed
+     * @ORM\Column(type="decimal", precision=12, scale=6)
+     */
+    private $calories = 0;
+
+    /**
+     * @return float
+     */
+    public function getCarbs()
+    {
+        return $this->carbs;
+    }
+
+    /**
+     * @param float $carbs
+     */
+    public function setCarbs($carbs)
+    {
+        $this->carbs = $carbs;
+    }
+
+    /**
+     * @return float
      */
     public function getStarch()
     {
@@ -39,7 +60,7 @@ class BaseNutritionEmbeddable implements ArraySerializable
     }
 
     /**
-     * @param mixed $starch
+     * @param float $starch
      */
     public function setStarch($starch)
     {
@@ -47,7 +68,7 @@ class BaseNutritionEmbeddable implements ArraySerializable
     }
 
     /**
-     * @return mixed
+     * @return float
      */
     public function getProtein()
     {
@@ -55,7 +76,7 @@ class BaseNutritionEmbeddable implements ArraySerializable
     }
 
     /**
-     * @param mixed $protein
+     * @param float $protein
      */
     public function setProtein($protein)
     {
@@ -63,7 +84,7 @@ class BaseNutritionEmbeddable implements ArraySerializable
     }
 
     /**
-     * @return mixed
+     * @return float
      */
     public function getFat()
     {
@@ -71,7 +92,7 @@ class BaseNutritionEmbeddable implements ArraySerializable
     }
 
     /**
-     * @param mixed $fat
+     * @param float $fat
      */
     public function setFat($fat)
     {
@@ -79,7 +100,7 @@ class BaseNutritionEmbeddable implements ArraySerializable
     }
 
     /**
-     * @return mixed
+     * @return float
      */
     public function getCalories()
     {
@@ -87,7 +108,7 @@ class BaseNutritionEmbeddable implements ArraySerializable
     }
 
     /**
-     * @param mixed $calories
+     * @param float $calories
      */
     public function setCalories($calories)
     {

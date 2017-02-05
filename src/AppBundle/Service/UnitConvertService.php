@@ -2,19 +2,19 @@
 
 namespace AppBundle\Service;
 
-use AppBundle\Entity\Embeddable\MeasureEmbeddable;
+use AppBundle\Entity\Measure;
 use AppBundle\Entity\Unit\Unit;
 use AppBundle\Exception\InvalidConversionException;
 
 class UnitConvertService
 {
     /**
-     * @param MeasureEmbeddable $measure
+     * @param Measure $measure
      * @param Unit $toUnit
-     * @return MeasureEmbeddable
+     * @return Measure
      * @throws InvalidConversionException
      */
-    public function convert(MeasureEmbeddable $measure, Unit $toUnit)
+    public function convert(Measure $measure, Unit $toUnit)
     {
         $fromUnit = $measure->getUnit();
         if (!$this->canConvert($fromUnit, $toUnit)) {
@@ -23,7 +23,7 @@ class UnitConvertService
             ));
         }
 
-        return new MeasureEmbeddable(
+        return new Measure(
             $this->calculateAmount($measure->getAmount(), $fromUnit, $toUnit),
             $toUnit
         );

@@ -14,13 +14,11 @@ class RecipeIngredientAdmin extends AbstractAdmin
 {
     protected function configureFormFields(FormMapper $formMapper)
     {
-        $formMapper->add('ingredient')
-            ->add('measure.amount', NumberType::class)
-            ->add('measure.unit', 'sonata_type_model', [
-                'by_reference' => true,
-                'class' => Unit::class
+        $formMapper
+            ->add('ingredient', 'sonata_type_model_autocomplete', [
+                'property' => 'name'
             ])
-        ;
+            ->add('measure', 'sonata_type_admin');
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
