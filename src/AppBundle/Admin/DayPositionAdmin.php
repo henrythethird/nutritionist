@@ -15,7 +15,13 @@ class DayPositionAdmin extends AbstractAdmin
             ->add('type', null, [], [
                 'allow_add' => true
             ])
-            ->add('ingredient')
+            ->add('ingredient', 'sonata_type_model_autocomplete', [
+                'property' => 'name'
+            ])
+            ->add('measure', 'sonata_type_admin', [], [
+                'required' => false,
+                'edit' => 'inline'
+            ])
         ;
     }
 

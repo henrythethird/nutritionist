@@ -29,7 +29,11 @@ class RecipeIngredient
     private $ingredient;
 
     /**
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Measure", cascade={"persist", "remove"})
+     * @ORM\OneToOne(
+     *     targetEntity="AppBundle\Entity\Measure",
+     *     cascade={"persist", "remove"},
+     *     fetch="EAGER"
+     * )
      */
     private $measure;
 

@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="day_position")
+ * @ORM\Table
  */
 class Position
 {
@@ -30,7 +30,11 @@ class Position
     private $type;
 
     /**
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Measure", cascade={"persist", "remove"})
+     * @ORM\OneToOne(
+     *     targetEntity="AppBundle\Entity\Measure",
+     *     cascade={"persist"},
+     *     fetch="EAGER"
+     * )
      */
     private $measure;
 
