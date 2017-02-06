@@ -2,6 +2,8 @@
 
 namespace AppBundle\Entity\Ingredient;
 
+use AppBundle\Collection\PositionCollectionInterface;
+use AppBundle\Collection\PositionInterface;
 use AppBundle\Strategy\ServingStrategy;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
@@ -9,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity()
  */
-class Recipe extends Ingredient
+class Recipe extends Ingredient implements PositionCollectionInterface
 {
     /**
      * @ORM\OneToMany(
@@ -83,5 +85,10 @@ class Recipe extends Ingredient
     public function getStrategy()
     {
         return new ServingStrategy();
+    }
+
+    public function getPositions()
+    {
+        return $this->getRecipeIngredients();
     }
 }

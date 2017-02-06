@@ -7,11 +7,12 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 
-class RecipeAdmin extends AbstractAdmin
+class RecipeAdmin extends AbstractNutritionAdmin
 {
     protected function configureFormFields(FormMapper $formMapper)
     {
-        $formMapper->add('name')
+        $formMapper
+            ->add('name')
             ->add('numberOfServings')
             ->add('recipeIngredients', 'sonata_type_collection', [
                 'by_reference' => false
@@ -19,6 +20,8 @@ class RecipeAdmin extends AbstractAdmin
                 'edit' => 'inline',
                 'inline' => 'table'
             ]);
+
+        $this->addNutrition($formMapper);
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)

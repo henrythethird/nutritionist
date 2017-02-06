@@ -2,9 +2,9 @@
 
 namespace AppBundle\Strategy;
 
-use AppBundle\Entity\Ingredient\RecipeIngredient;
+use AppBundle\Collection\PositionInterface;
 
 interface StrategyInterface
 {
-    public function calculateMultiplier(RecipeIngredient $recipeIngredient);
+    public function calculateMultiplier(PositionInterface $recipeIngredient);
 }

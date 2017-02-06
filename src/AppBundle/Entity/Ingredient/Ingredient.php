@@ -115,7 +115,7 @@ abstract class Ingredient
     /**
      * @param BaseNutritionEmbeddable $nutrition
      */
-    public function setNutrition($nutrition)
+    public function setNutrition(BaseNutritionEmbeddable $nutrition)
     {
         $this->nutrition = $nutrition;
     }

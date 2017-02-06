@@ -3,13 +3,13 @@
 namespace AppBundle\Strategy;
 
 
-use AppBundle\Entity\Ingredient\RecipeIngredient;
+use AppBundle\Collection\PositionInterface;
 
 class WeightStrategy implements StrategyInterface
 {
-    public function calculateMultiplier(RecipeIngredient $recipeIngredient)
+    public function calculateMultiplier(PositionInterface $position)
     {
-        $measure = $recipeIngredient->getMeasure();
+        $measure = $position->getMeasure();
         return $measure->getAmount() * $measure->getUnit()->getBaseRatio();
     }
 }

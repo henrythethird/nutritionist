@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity\Ingredient;
 
+use AppBundle\Collection\PositionInterface;
 use AppBundle\Entity\Measure;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -9,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\Table()
  */
-class RecipeIngredient
+class RecipeIngredient implements PositionInterface
 {
     /**
      * @ORM\Id

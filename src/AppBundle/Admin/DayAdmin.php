@@ -2,12 +2,11 @@
 
 namespace AppBundle\Admin;
 
-use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 
-class DayAdmin extends AbstractAdmin
+class DayAdmin extends AbstractNutritionAdmin
 {
     protected function configureFormFields(FormMapper $formMapper)
     {
@@ -25,6 +24,8 @@ class DayAdmin extends AbstractAdmin
                 'inline' => 'table'
             ])
         ;
+
+        $this->addNutrition($formMapper);
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)

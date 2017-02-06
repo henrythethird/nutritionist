@@ -7,11 +7,13 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 
-class IngredientAdmin extends AbstractAdmin
+class IngredientAdmin extends AbstractNutritionAdmin
 {
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper->add('name');
+
+        $this->addNutrition($formMapper);
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)

@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity\Day;
 
+use AppBundle\Collection\PositionInterface;
 use AppBundle\Entity\Ingredient\Ingredient;
 use AppBundle\Entity\Measure;
 use Doctrine\ORM\Mapping as ORM;
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\Table
  */
-class Position
+class Position implements PositionInterface
 {
     /**
      * @ORM\Id
@@ -32,7 +33,7 @@ class Position
     /**
      * @ORM\OneToOne(
      *     targetEntity="AppBundle\Entity\Measure",
-     *     cascade={"persist"},
+     *     cascade={"persist", "remove"},
      *     fetch="EAGER"
      * )
      */
@@ -99,7 +100,7 @@ class Position
     /**
      * @param Measure $measure
      */
-    public function setMeasure($measure)
+    public function setMeasure(Measure $measure)
     {
         $this->measure = $measure;
     }

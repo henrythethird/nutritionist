@@ -3,9 +3,9 @@
 namespace AppBundle\Service;
 
 
+use AppBundle\Collection\PositionCollectionInterface;
 use AppBundle\Entity\Embeddable\BaseNutritionEmbeddable;
 use AppBundle\Entity\Ingredient\Ingredient;
-use AppBundle\Entity\Ingredient\Recipe;
 
 class SummarizeService
 {
@@ -24,23 +24,20 @@ class SummarizeService
         return $summarized;
     }
 
-    /**
-     * @param Recipe $recipe
-     */
-    public function recalculateRecipeNutrition(Recipe $recipe)
+    public function recalculateRecipeNutrition(PositionCollectionInterface $positionCollection)
     {
         $summarized = new BaseNutritionEmbeddable();
 
-        foreach ($recipe->getRecipeIngredients() as $recipeIngredient) {
-            $strategy = $recipeIngredient->getIngredient()->getStrategy();
+        foreach ($positionCollection->getPositions() as $position) {
+            $strategy = $position->getIngredient()->getStrategy();
 
-            $multiplier = $strategy->calculateMultiplier($recipeIngredient);
+            $multiplier = $strategy->calculateMultiplier($position);
 
-            $nutrition = clone $recipeIngredient->getIngredient()->getNutrition();
+            $nutrition = clone $position->getIngredient()->getNutrition();
             $nutrition->multiply($multiplier);
             $summarized->add($nutrition);
         }
 
-        $recipe->setNutrition($summarized);
+        $positionCollection->setNutrition($summarized);
     }
 }
