@@ -2,12 +2,11 @@
 
 namespace AppBundle\Listener;
 
-
-use AppBundle\Entity\Ingredient\Recipe;
+use AppBundle\Collection\PositionCollectionInterface;
 use AppBundle\Service\SummarizeService;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
 
-class RecipeListener
+class PositionCollectionListener
 {
     /**
      * @var SummarizeService
@@ -23,7 +22,7 @@ class RecipeListener
     {
         $entity = $args->getObject();
 
-        if (!$entity instanceof Recipe) {
+        if (!$entity instanceof PositionCollectionInterface) {
             return;
         }
 

@@ -13,7 +13,7 @@ services:
         class: AppBundle\Service\SummarizeService
 
     app.listener.recipe:
-        class: AppBundle\Listener\RecipeListener
+        class: AppBundle\Listener\PositionCollectionListener
         arguments: ['@app.service.summarize']
         tags:
             - { name: doctrine.event_listener, event: preUpdate }
