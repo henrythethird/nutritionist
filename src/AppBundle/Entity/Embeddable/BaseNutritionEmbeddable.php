@@ -132,6 +132,7 @@ class BaseNutritionEmbeddable implements ArraySerializable
     public function toArray()
     {
         return [
+            'carbs' => $this->getCarbs(),
             'starch' => $this->getStarch(),
             'protein' => $this->getProtein(),
             'fat' => $this->getFat(),
