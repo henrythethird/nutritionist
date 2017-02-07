@@ -1,5 +1,23 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    <h1>Hi there</h1>
+{% block content %}
+    <h1>Day {{ day.date|date('d.m.Y') }}</h1>
+    <h3>Positions:</h3>
+    <table class="positions">
+    {% for position in day.positions %}
+        <tr>
+            <td>
+                {{ position.measure.amount }} {{ position.measure.unit }}
+            </td>
+            <td>
+                <a href="{{ path('ingredient_show', {id: position.ingredient.id}) }}">{{ position.ingredient }}</a>
+            </td>
+            <td>
+                {% include 'nutrition/info.html.twig' with {nutrition: position.ingredient.nutrition} %}
+            </td>
+        </tr>
+    {% endfor %}
+    </table>
+    <br>
+    {% include 'nutrition/info.html.twig' with {nutrition: day.nutrition} %}
 {% endblock %}

@@ -1,0 +1,6 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <h1>{{ ingredient.name }}</h1>
+    {% include 'nutrition/info.html.twig' with {nutrition: ingredient.nutrition} %}
+{% endblock %}

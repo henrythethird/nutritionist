@@ -3,29 +3,22 @@
 namespace AppBundle\Listener;
 
 use AppBundle\Collection\PositionCollectionInterface;
-use AppBundle\Service\SummarizeService;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
 
-class PositionCollectionListener
+class PositionCollectionListener extends ContainerAwareListener
 {
-    /**
-     * @var SummarizeService
-     */
-    private $summarize;
-
-    public function __construct(SummarizeService $summarize)
+    protected function getClass()
     {
-        $this->summarize = $summarize;
+        return PositionCollectionInterface::class;
     }
 
-    public function preUpdate(PreUpdateEventArgs $args)
+    protected function processPreUpdate(PreUpdateEventArgs $args)
     {
-        $entity = $args->getObject();
+        /** @var PositionCollectionInterface $position */
+        $position = $args->getObject();
 
-        if (!$entity instanceof PositionCollectionInterface) {
-            return;
-        }
-
-        $this->summarize->recalculateRecipeNutrition($entity);
+        $this->getContainer()
+            ->get('app.service.summarize')
+            ->recalculateRecipeNutrition($position);
     }
 }

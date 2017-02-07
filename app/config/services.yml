@@ -2,8 +2,15 @@ services:
     app.service.convert:
         class: AppBundle\Service\UnitConvertService
 
-    app.listener.unit:
-        class: AppBundle\Listener\UnitListener
+    app.listener.volume_unit:
+        class: AppBundle\Listener\VolumeUnitListener
+        arguments: ['@service_container']
+        tags:
+            - { name: doctrine.event_listener, event: preUpdate }
+            - { name: doctrine.event_listener, event: postFlush }
+
+    app.listener.weight_unit:
+        class: AppBundle\Listener\WeightUnitListener
         arguments: ['@service_container']
         tags:
             - { name: doctrine.event_listener, event: preUpdate }
@@ -14,7 +21,7 @@ services:
 
     app.listener.recipe:
         class: AppBundle\Listener\PositionCollectionListener
-        arguments: ['@app.service.summarize']
+        arguments: ['@service_container']
         tags:
             - { name: doctrine.event_listener, event: preUpdate }
 

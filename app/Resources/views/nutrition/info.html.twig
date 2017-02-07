@@ -1,0 +1,24 @@
+<table width="200">
+    <tbody>
+        <tr>
+            <th>Calories</th>
+            <td class="text-right">{{ nutrition.calories|number_format(2) }}</td>
+        </tr>
+        <tr>
+            <th>Starch</th>
+            <td class="text-right">{{ nutrition.starch|number_format(2) }}</td>
+        </tr>
+        <tr>
+            <th>Carbs</th>
+            <td class="text-right">{{ nutrition.carbs|number_format(2) }}</td>
+        </tr>
+        <tr>
+            <th>Fat</th>
+            <td class="text-right">{{ nutrition.fat|number_format(2) }}</td>
+        </tr>
+        <tr>
+            <th>Protein</th>
+            <td class="text-right">{{ nutrition.protein|number_format(2) }}</td>
+        </tr>
+    </tbody>
+</table>

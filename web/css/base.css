@@ -1,0 +1,35 @@
+body {
+    padding-top: 20px;
+}
+
+.container {
+    max-width: 720px;
+}
+
+.header {
+    border-bottom: 1px solid grey;
+}
+
+td {
+    vertical-align: top;
+}
+
+.positions td {
+    padding-right: 20px;
+}
+
+.header h3 {
+    line-height: 40px;
+    margin-top: 0;
+}
+
+.footer {
+    margin-top: 20px;
+    color: #777;
+    padding-top: 15px;
+    border-top: 1px solid grey;
+}
+
+.center {
+
+}

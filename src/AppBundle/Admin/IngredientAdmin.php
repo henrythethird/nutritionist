@@ -13,7 +13,7 @@ class IngredientAdmin extends AbstractNutritionAdmin
     {
         $formMapper->add('name');
 
-        $this->addNutrition($formMapper);
+        $this->addNutrition($formMapper, true);
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
