@@ -19,7 +19,8 @@ class RecipeAdmin extends AbstractNutritionAdmin
             ], [
                 'edit' => 'inline',
                 'inline' => 'table'
-            ]);
+            ])
+        ;
 
         $this->addNutrition($formMapper);
     }

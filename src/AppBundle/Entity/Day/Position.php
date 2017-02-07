@@ -31,6 +31,11 @@ class Position implements PositionInterface
     private $type;
 
     /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Ingredient\Ingredient", inversedBy="positions")
+     */
+    private $ingredient;
+
+    /**
      * @ORM\OneToOne(
      *     targetEntity="AppBundle\Entity\Measure",
      *     cascade={"persist", "remove"},
@@ -38,11 +43,6 @@ class Position implements PositionInterface
      * )
      */
     private $measure;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Ingredient\Ingredient", inversedBy="positions")
-     */
-    private $ingredient;
 
     public function __construct()
     {
