@@ -2,9 +2,8 @@
 
 namespace AppBundle\Entity\Day;
 
-
 use AppBundle\Collection\PositionCollectionInterface;
-use AppBundle\Entity\Embeddable\BaseNutritionEmbeddable;
+use AppBundle\Entity\Nutrition\NutritionEmbeddable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -27,7 +26,7 @@ class Day implements PositionCollectionInterface
     private $date;
 
     /**
-     * @ORM\Embedded(class="AppBundle\Entity\Embeddable\BaseNutritionEmbeddable")
+     * @ORM\Embedded(class="AppBundle\Entity\Nutrition\NutritionEmbeddable")
      */
     protected $nutrition;
 
@@ -43,7 +42,7 @@ class Day implements PositionCollectionInterface
     public function __construct()
     {
         $this->positions = new ArrayCollection();
-        $this->nutrition = new BaseNutritionEmbeddable();
+        $this->nutrition = new NutritionEmbeddable();
     }
 
     /**
@@ -71,7 +70,7 @@ class Day implements PositionCollectionInterface
     }
 
     /**
-     * @return BaseNutritionEmbeddable
+     * @return NutritionEmbeddable
      */
     public function getNutrition()
     {
@@ -79,9 +78,9 @@ class Day implements PositionCollectionInterface
     }
 
     /**
-     * @param BaseNutritionEmbeddable $nutrition
+     * @param NutritionEmbeddable $nutrition
      */
-    public function setNutrition(BaseNutritionEmbeddable $nutrition)
+    public function setNutrition(NutritionEmbeddable $nutrition)
     {
         $this->nutrition = $nutrition;
     }

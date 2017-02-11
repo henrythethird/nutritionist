@@ -4,18 +4,18 @@ namespace AppBundle\Service;
 
 
 use AppBundle\Collection\PositionCollectionInterface;
-use AppBundle\Entity\Embeddable\BaseNutritionEmbeddable;
 use AppBundle\Entity\Ingredient\Ingredient;
+use AppBundle\Entity\Nutrition\NutritionEmbeddable;
 
 class SummarizeService
 {
     /**
      * @param Ingredient[] $ingredients
-     * @return BaseNutritionEmbeddable
+     * @return NutritionEmbeddable
      */
     public function summarize($ingredients)
     {
-        $summarized = new BaseNutritionEmbeddable();
+        $summarized = new NutritionEmbeddable();
 
         foreach ($ingredients as $ingredient) {
             $summarized->add($ingredient->getNutrition());
@@ -26,7 +26,7 @@ class SummarizeService
 
     public function recalculateRecipeNutrition(PositionCollectionInterface $positionCollection)
     {
-        $summarized = new BaseNutritionEmbeddable();
+        $summarized = new NutritionEmbeddable();
 
         foreach ($positionCollection->getPositions() as $position) {
             $strategy = $position->getIngredient()->getStrategy();

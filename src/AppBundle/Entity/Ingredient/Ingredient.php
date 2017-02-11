@@ -2,7 +2,7 @@
 
 namespace AppBundle\Entity\Ingredient;
 
-use AppBundle\Entity\Embeddable\BaseNutritionEmbeddable;
+use AppBundle\Entity\Nutrition\NutritionEmbeddable;
 use AppBundle\Strategy\StrategyInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
@@ -37,7 +37,7 @@ abstract class Ingredient
     protected $name;
 
     /**
-     * @ORM\Embedded(class="AppBundle\Entity\Embeddable\BaseNutritionEmbeddable")
+     * @ORM\Embedded(class="AppBundle\Entity\Nutrition\NutritionEmbeddable")
      */
     protected $nutrition;
 
@@ -60,7 +60,7 @@ abstract class Ingredient
     {
         $this->ingredientRecipes = new ArrayCollection();
         $this->positions = new ArrayCollection();
-        $this->nutrition = new BaseNutritionEmbeddable();
+        $this->nutrition = new NutritionEmbeddable();
         $this->branded = false;
     }
 
@@ -105,22 +105,6 @@ abstract class Ingredient
     }
 
     /**
-     * @return BaseNutritionEmbeddable
-     */
-    public function getNutrition()
-    {
-        return $this->nutrition;
-    }
-
-    /**
-     * @param BaseNutritionEmbeddable $nutrition
-     */
-    public function setNutrition(BaseNutritionEmbeddable $nutrition)
-    {
-        $this->nutrition = $nutrition;
-    }
-
-    /**
      * @return boolean
      */
     public function isBranded()
@@ -161,6 +145,24 @@ abstract class Ingredient
     public function removeIngredientRecipe(RecipeIngredient $recipeIngredient)
     {
         $this->ingredientRecipes->removeElement($recipeIngredient);
+    }
+
+    /**
+     * @return NutritionEmbeddable
+     */
+    public function getNutrition()
+    {
+        return $this->nutrition;
+    }
+
+    /**
+     * @param NutritionEmbeddable $nutrition
+     * @return Ingredient
+     */
+    public function setNutrition(NutritionEmbeddable $nutrition)
+    {
+        $this->nutrition = $nutrition;
+        return $this;
     }
 
     public function __toString()

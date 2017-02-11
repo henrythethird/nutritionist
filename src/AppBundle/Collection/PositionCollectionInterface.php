@@ -3,7 +3,7 @@
 namespace AppBundle\Collection;
 
 
-use AppBundle\Entity\Embeddable\BaseNutritionEmbeddable;
+use AppBundle\Entity\Nutrition\NutritionEmbeddable;
 
 interface PositionCollectionInterface
 {
@@ -12,5 +12,5 @@ interface PositionCollectionInterface
      */
     public function getPositions();
 
-    public function setNutrition(BaseNutritionEmbeddable $nutrition);
+    public function setNutrition(NutritionEmbeddable $nutrition);
 }
