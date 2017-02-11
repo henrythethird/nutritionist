@@ -80,6 +80,6 @@ abstract class ContainerAwareListener
 
     protected function isInstance($object)
     {
-        return is_subclass_of($object, $this->getClass());
+        return is_a($object, $this->getClass());
     }
 }

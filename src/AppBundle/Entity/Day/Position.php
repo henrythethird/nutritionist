@@ -39,6 +39,7 @@ class Position implements PositionInterface
      * @ORM\OneToOne(
      *     targetEntity="AppBundle\Entity\Measure",
      *     cascade={"persist", "remove"},
+     *     orphanRemoval=true,
      *     fetch="EAGER"
      * )
      */
@@ -119,5 +120,10 @@ class Position implements PositionInterface
     public function setIngredient($ingredient)
     {
         $this->ingredient = $ingredient;
+    }
+
+    public function getParent()
+    {
+        return $this->getDay();
     }
 }

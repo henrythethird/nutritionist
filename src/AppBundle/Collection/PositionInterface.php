@@ -17,4 +17,9 @@ interface PositionInterface
      * @return Measure
      */
     public function getMeasure();
+
+    /**
+     * @return PositionCollectionInterface
+     */
+    public function getParent();
 }

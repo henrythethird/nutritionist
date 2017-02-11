@@ -10,11 +10,12 @@ use Symfony\Component\Form\Extension\Core\Type\NumberType;
 abstract class AbstractNutritionAdmin extends AbstractAdmin
 {
     private static $fieldMapping = [
+        'calories',
+        'water',
+        'alcohol',
         'carbs',
-        'starch',
         'protein',
         'fat',
-        'calories'
     ];
 
     protected function addNutrition(FormMapper $formMapper, $editable = false, $prefix = "nutrition")

@@ -16,14 +16,28 @@ services:
             - { name: doctrine.event_listener, event: preUpdate }
             - { name: doctrine.event_listener, event: postFlush }
 
-    app.service.summarize:
-        class: AppBundle\Service\SummarizeService
+    app.listener.day:
+        class: AppBundle\Listener\DayToWeekAssignerListener
+        arguments: ['@service_container']
+        tags:
+            - { name: doctrine.event_listener, event: preUpdate }
+            - { name: doctrine.event_listener, event: postFlush }
+
+    app.listener.position:
+        class: AppBundle\Listener\PositionListener
+        arguments: ['@service_container']
+        tags:
+            - { name: doctrine.event_listener, event: preUpdate }
+            - { name: doctrine.event_listener, event: postFlush }
 
     app.listener.recipe:
         class: AppBundle\Listener\PositionCollectionListener
         arguments: ['@service_container']
         tags:
             - { name: doctrine.event_listener, event: preUpdate }
+
+    app.service.summarize:
+        class: AppBundle\Service\SummarizeService
 
     app.service.swiss_import:
         class: AppBundle\Service\SwissDatabaseExcelImportService

@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity\Ingredient;
 
+use AppBundle\Collection\PositionCollectionInterface;
 use AppBundle\Collection\PositionInterface;
 use AppBundle\Entity\Measure;
 use Doctrine\ORM\Mapping as ORM;
@@ -33,6 +34,7 @@ class RecipeIngredient implements PositionInterface
      * @ORM\OneToOne(
      *     targetEntity="AppBundle\Entity\Measure",
      *     cascade={"persist", "remove"},
+     *     orphanRemoval=true,
      *     fetch="EAGER"
      * )
      */
@@ -88,5 +90,10 @@ class RecipeIngredient implements PositionInterface
     public function setMeasure(Measure $measure)
     {
         $this->measure = $measure;
+    }
+
+    public function getParent()
+    {
+        return $this->getRecipe();
     }
 }

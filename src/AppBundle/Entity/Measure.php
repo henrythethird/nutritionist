@@ -66,7 +66,7 @@ class Measure
         return $this->unit;
     }
 
-    public function setUnit(Unit $unit)
+    public function setUnit(Unit $unit = null)
     {
         $this->unit = $unit;
     }

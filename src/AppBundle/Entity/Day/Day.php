@@ -28,16 +28,25 @@ class Day implements PositionCollectionInterface
     /**
      * @ORM\Embedded(class="AppBundle\Entity\Nutrition\NutritionEmbeddable")
      */
-    protected $nutrition;
+    private $nutrition;
 
     /**
      * @ORM\OneToMany(
      *     targetEntity="AppBundle\Entity\Day\Position",
      *     mappedBy="day",
-     *     cascade={"persist", "remove"
-     * })
+     *     cascade={"persist", "remove"},
+     *     orphanRemoval=true
+     * )
      */
     private $positions;
+
+    /**
+     * @ORM\ManyToOne(
+     *     targetEntity="AppBundle\Entity\Day\Week",
+     *     inversedBy="days"
+     * )
+     */
+    private $week;
 
     public function __construct()
     {
@@ -110,5 +119,23 @@ class Day implements PositionCollectionInterface
     public function removePosition(Position $position)
     {
         $this->positions->removeElement($position);
+    }
+
+    /**
+     * @return Week
+     */
+    public function getWeek()
+    {
+        return $this->week;
+    }
+
+    /**
+     * @param Week $week
+     * @return Day
+     */
+    public function setWeek(Week $week)
+    {
+        $this->week = $week;
+        return $this;
     }
 }

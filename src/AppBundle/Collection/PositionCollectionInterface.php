@@ -7,6 +7,8 @@ use AppBundle\Entity\Nutrition\NutritionEmbeddable;
 
 interface PositionCollectionInterface
 {
+    public function getId();
+
     /**
      * @return PositionInterface[]
      */
