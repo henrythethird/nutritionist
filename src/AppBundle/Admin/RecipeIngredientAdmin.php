@@ -18,7 +18,12 @@ class RecipeIngredientAdmin extends AbstractAdmin
             ->add('ingredient', 'sonata_type_model_autocomplete', [
                 'property' => 'name'
             ])
-            ->add('measure', 'sonata_type_admin');
+            ->add('measure', 'sonata_type_admin', [
+                'by_reference' => false,
+            ], [
+                'edit' => 'inline',
+                'inline' => 'table',
+            ]);
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
