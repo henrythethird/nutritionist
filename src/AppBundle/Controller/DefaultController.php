@@ -2,7 +2,7 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\Day\Day;
+use AppBundle\Entity\Day\Week;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -15,12 +15,12 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        /** @var Day $day */
-        $day = $this->getDoctrine()->getRepository(Day::class)
-            ->find(1);
+        /** @var Week[] $day */
+        $weeks = $this->getDoctrine()->getRepository(Week::class)
+            ->findBy([], ['year' => 'ASC', 'weekNumber' => 'ASC']);
 
         return [
-            'day' => $day
+            'weeks' => $weeks
         ];
     }
 }

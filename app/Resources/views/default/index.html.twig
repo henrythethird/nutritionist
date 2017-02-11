@@ -1,23 +1,21 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-    <h1>Day {{ day.date|date('d.m.Y') }}</h1>
-    <h3>Positions:</h3>
-    <table class="positions">
-    {% for position in day.positions %}
-        <tr>
-            <td>
-                {{ position.measure.amount }} {{ position.measure.unit }}
-            </td>
-            <td>
-                <a href="{{ path('ingredient_show', {id: position.ingredient.id}) }}">{{ position.ingredient }}</a>
-            </td>
-            <td>
-                {% include 'nutrition/info.html.twig' with {nutrition: position.ingredient.nutrition} %}
-            </td>
-        </tr>
+    <h1>Weeks</h1>
+    <ul>
+    {% for week in weeks %}
+        <li>
+            {{ week.year }} - Week {{ week.weekNumber }}
+            <ul>
+            {% for day in week.days %}
+                <li>
+                    <a href="{{ path('day_index', {id: day.id}) }}">
+                        {{ day.date|date('d.m.Y') }}
+                    </a>
+                </li>
+            {% endfor %}
+            </ul>
+        </li>
     {% endfor %}
-    </table>
-    <br>
-    {% include 'nutrition/info.html.twig' with {nutrition: day.nutrition} %}
+    </ul>
 {% endblock %}
