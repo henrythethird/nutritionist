@@ -6,7 +6,7 @@
     <div>
     {% for week in weeks if week.days|length %}
         <div>
-            {{ week.year }} - Week {{ week.weekNumber }}
+            <a href="{{ path("week_show", {id: week.id}) }}">{{ week.year }} - Week {{ week.weekNumber }}</a>
             <ul>
             {% for day in week.days %}
                 <li>

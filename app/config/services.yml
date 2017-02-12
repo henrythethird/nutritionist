@@ -23,6 +23,13 @@ services:
             - { name: doctrine.event_listener, event: preUpdate }
             - { name: doctrine.event_listener, event: postFlush }
 
+    app.listener.week:
+        class: AppBundle\Listener\WeekRecalculateListener
+        arguments: ['@service_container']
+        tags:
+            - { name: doctrine.event_listener, event: preUpdate }
+            - { name: doctrine.event_listener, event: postFlush }
+
     app.listener.position:
         class: AppBundle\Listener\PositionListener
         arguments: ['@service_container']

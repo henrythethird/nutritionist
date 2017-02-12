@@ -12,7 +12,16 @@ class BaseDavController extends Controller
      */
     protected function getDav()
     {
-        $dav = new NutritionEmbeddable();
-        return $dav->fromArray($this->getParameter('dav'));
+        return (new NutritionEmbeddable())
+            ->fromArray($this->getParameter('dav'));
+    }
+
+    /**
+     * @return NutritionEmbeddable
+     */
+    protected function getDavWeek()
+    {
+        return $this->getDav()
+            ->multiply(7);
     }
 }

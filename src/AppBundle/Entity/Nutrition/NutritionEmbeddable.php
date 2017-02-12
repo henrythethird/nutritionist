@@ -928,6 +928,7 @@ class NutritionEmbeddable
         foreach ($embeddable->toArray() as $key => $value) {
             $this->$key += $value;
         }
+        return $this;
     }
 
     public function multiply($factor)
@@ -935,5 +936,6 @@ class NutritionEmbeddable
         foreach ($this->toArray() as $key => $value) {
             $this->$key *= $factor;
         }
+        return $this;
     }
 }

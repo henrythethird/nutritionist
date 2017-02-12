@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <h1>{{ week.year }} - Week {{ week.weekNumber }}</h1>
+    <div class="row">
+        <div class="col-xs-6">
+            <h3>Days:</h3>
+            <table class="positions">
+                {% for day in week.days %}
+                    <tr>
+                        <td>
+                            <a href="{{ path("day_index", {id: day.id}) }}">
+                                {{ day.date|date('d.m.Y') }}
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <div class="col-xs-6">
+            {% include 'nutrition/info.html.twig' with {nutrition: week.nutrition} %}
+        </div>
+    </div>
+{% endblock %}

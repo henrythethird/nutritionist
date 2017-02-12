@@ -2,6 +2,8 @@
 
 namespace AppBundle\Entity\Day;
 
+use AppBundle\Entity\IdentifiableInterface;
+use AppBundle\Entity\Nutrition\NutritionEmbeddable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -11,7 +13,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @ORM\Table
  * @UniqueEntity(fields={"weekNumber", "year"})
  */
-class Week
+class Week implements IdentifiableInterface
 {
     /**
      * @ORM\Id
@@ -39,9 +41,15 @@ class Week
      */
     private $year;
 
+    /**
+     * @ORM\Embedded(class="AppBundle\Entity\Nutrition\NutritionEmbeddable")
+     */
+    private $nutrition;
+
     public function __construct($year = null, $weekNumber = null)
     {
         $this->days = new ArrayCollection();
+        $this->nutrition = new NutritionEmbeddable();
 
         $this->year = $year;
         $this->weekNumber = $weekNumber;
@@ -137,6 +145,24 @@ class Week
     public function setYear($year)
     {
         $this->year = $year;
+        return $this;
+    }
+
+    /**
+     * @return NutritionEmbeddable
+     */
+    public function getNutrition()
+    {
+        return $this->nutrition;
+    }
+
+    /**
+     * @param NutritionEmbeddable $nutrition
+     * @return Week
+     */
+    public function setNutrition(NutritionEmbeddable $nutrition)
+    {
+        $this->nutrition = $nutrition;
         return $this;
     }
 
