@@ -1,23 +1,31 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
+    {% set day = aggregate.day %}
     <h1>{{ day.date|date('d.m.Y') }}</h1>
-    <h3>Positions:</h3>
-    <table class="positions">
-    {% for position in day.positions %}
-        <tr>
-            <td>
-                {{ position.measure.amount }} {{ position.measure.unit }}
-            </td>
-            <td>
-                <a href="{{ path('ingredient_show', {id: position.ingredient.id}) }}">{{ position.ingredient }}</a>
-            </td>
-            <td>
-                {% include 'nutrition/info.html.twig' with {nutrition: position.ingredient.nutrition} %}
-            </td>
-        </tr>
-    {% endfor %}
-    </table>
-    <br>
-    {% include 'nutrition/info.html.twig' with {nutrition: day.nutrition} %}
+    <div class="row">
+        <div class="col-xs-6">
+            <h3>Meals:</h3>
+            <table class="positions">
+            {% for positionHeader in aggregate.positions %}
+                <tr>
+                    <td colspan="2"><h4>{{ positionHeader.header }}</h4></td>
+                </tr>
+                {% for position in positionHeader.positions %}
+                    <tr>
+                        <td style="white-space: nowrap">
+                            {{ position.measure.amount }} {{ position.measure.unit }}
+                        </td>
+                        <td>
+                            <a href="{{ path('ingredient_show', {id: position.ingredient.id}) }}">{{ position.ingredient.name }}</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% endfor %}
+            </table>
+        </div>
+        <div class="col-xs-6">
+            {% include 'nutrition/info.html.twig' with {nutrition: day.nutrition} %}
+        </div>
+    </div>
 {% endblock %}

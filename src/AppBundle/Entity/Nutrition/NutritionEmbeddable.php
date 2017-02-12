@@ -770,6 +770,7 @@ class NutritionEmbeddable
         foreach ($array as $key => $value) {
             $this->$key = $value;
         }
+        return $this;
     }
 
     public function add(NutritionEmbeddable $embeddable)

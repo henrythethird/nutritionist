@@ -5,9 +5,8 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Day\Week;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class DefaultController extends Controller
+class DefaultController extends BaseDavController
 {
     /**
      * @Route("/", name="homepage")
@@ -17,10 +16,13 @@ class DefaultController extends Controller
     {
         /** @var Week[] $day */
         $weeks = $this->getDoctrine()->getRepository(Week::class)
-            ->findBy([], ['year' => 'ASC', 'weekNumber' => 'ASC']);
+            ->findBy([], [
+                'year' => 'ASC', 'weekNumber' => 'ASC'
+            ]);
 
         return [
-            'weeks' => $weeks
+            'weeks' => $weeks,
+            'dav' => $this->getDav()
         ];
     }
 }

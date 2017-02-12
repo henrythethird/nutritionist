@@ -2,12 +2,12 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Aggregate\DayAggregate;
 use AppBundle\Entity\Day\Day;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class DayController extends Controller
+class DayController extends BaseDavController
 {
     /**
      * @Route("/day/{id}", name="day_index")
@@ -15,8 +15,11 @@ class DayController extends Controller
      */
     public function indexAction(Day $day)
     {
+        $aggregate = new DayAggregate($day);
+
         return [
-            'day' => $day
+            'dav' => $this->getDav(),
+            'aggregate' => $aggregate
         ];
     }
 }

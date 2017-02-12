@@ -1,24 +1,216 @@
-<table width="200">
+<table class="nutrition_table text-left">
     <tbody>
-        <tr>
-            <th>Calories</th>
-            <td class="text-right">{{ nutrition.calories|number_format(2) }}</td>
-        </tr>
-        <tr>
-            <th>Starch</th>
-            <td class="text-right">{{ nutrition.starch|number_format(2) }}</td>
-        </tr>
-        <tr>
-            <th>Carbs</th>
-            <td class="text-right">{{ nutrition.carbs|number_format(2) }}</td>
-        </tr>
-        <tr>
-            <th>Fat</th>
-            <td class="text-right">{{ nutrition.fat|number_format(2) }}</td>
-        </tr>
-        <tr>
-            <th>Protein</th>
-            <td class="text-right">{{ nutrition.protein|number_format(2) }}</td>
-        </tr>
+    <tr>
+        <td colspan="3"><h4>Nutrition Facts</h4></td>
+    </tr>
+    <tr class="separator"><td colspan="3"></td></tr>
+    <tr class="separator"><td colspan="3"></td></tr>
+    <tr>
+        <th>Amount per</th>
+        <th class="text-right">100g</th>
+        <td class="text-right">% DV</td>
+    </tr>
+    <tr>
+        <th>Calories: </th>
+        <td class="text-right">{{ nutrition.calories|number_format }}kcal</td>
+        <td class="text-right">{{ (nutrition.calories / dav.calories * 100) | number_format(0) }}%</td>
+    </tr>
+    <tr class="separator"><td colspan="3"></td></tr>
+    <tr>
+        <th>Macronutrients</th>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <th>Water:</th>
+        <td class="text-right">{{ nutrition.water }}g</td>
+        <th class="text-right"></th>
+    </tr>
+    <tr>
+        <th>Alcohol:</th>
+        <td class="text-right">{{ nutrition.alcohol }}g</td>
+        <th class="text-right"></th>
+    </tr>
+    <tr>
+        <th>Total Fat:</th>
+        <td class="text-right">{{ nutrition.fat }}g</td>
+        <th class="text-right">{{ (nutrition.fat / dav.fat * 100) | number_format(0) }}%</th>
+    </tr>
+    <tr>
+        <td class="indent-1">Saturated Fat:</td>
+        <td class="text-right">{{ nutrition.fattyAcidsSaturated }}g</td>
+        <th class="text-right">{{ (nutrition.fattyAcidsSaturated / dav.fattyAcidsSaturated * 100) | number_format(0) }}%</th>
+    </tr>
+    <tr>
+        <td class="indent-1">Mono-Saturated Fat:</td>
+        <td class="text-right">{{ nutrition.fattyAcidsMono }}g</td>
+        <th class="text-right"></th>
+    </tr>
+    <tr>
+        <td class="indent-1">Poly-Saturated Fat:</td>
+        <td class="text-right">{{ nutrition.fattyAcidsPoly }}g</td>
+        <th class="text-right"></th>
+    </tr>
+    <tr>
+        <td class="indent-1">Cholesterol:</td>
+        <td class="text-right">{{ nutrition.cholesterol }}mg</td>
+        <th class="text-right">{{ (nutrition.cholesterol / dav.cholesterol * 100) | number_format(0) }}%</th>
+    </tr>
+    <tr>
+        <th>Sodium:</th>
+        <td class="text-right">{{ nutrition.sodium }}mg</td>
+        <th class="text-right">{{ (nutrition.sodium / dav.sodium * 100) | number_format(0) }}%</th>
+    </tr>
+    <tr>
+        <th>Total Carbohydrate:</th>
+        <td class="text-right">{{ nutrition.carbs }}g</td>
+        <th class="text-right">{{ (nutrition.carbs / dav.carbs * 100) | number_format(0) }}%</th>
+    </tr>
+    <tr>
+        <td class="indent-1">Sugars:</td>
+        <td class="text-right">{{ nutrition.sugar }}g</td>
+        <td class="text-right"></td>
+    </tr>
+    <tr>
+        <td class="indent-1">Starch:</td>
+        <td class="text-right">{{ nutrition.starch }}g</td>
+        <td class="text-right"></td>
+    </tr>
+    <tr>
+        <th>Dietary Fibers:</th>
+        <td class="text-right">{{ nutrition.fibres }}g</td>
+        <th class="text-right">{{ (nutrition.fibres / dav.fibres * 100) | number_format(0) }}%</th>
+    </tr>
+    <tr>
+        <th>Protein:</th>
+        <td class="text-right">{{ nutrition.protein }}g</td>
+        <th class="text-right">{{ (nutrition.protein / dav.protein * 100) | number_format(0) }}%</th>
+    </tr>
+    <tr class="separator"><td colspan="3"></td></tr>
+    <tr>
+        <th>Vitamins</th>
+        <td></td>
+        <td class="text-right">% DV</td>
+    </tr>
+    <tr>
+        <td class="indent-1">Vitamin A:</td>
+        <td class="text-right">{{ nutrition.vitaminA }}&mu;g</td>
+        <td class="text-right">{{ (nutrition.vitaminA / dav.vitaminA * 100) | number_format(0) }}%</td>
+    </tr>
+    <tr>
+        <td class="indent-1">Vitamin B1:</td>
+        <td class="text-right">{{ nutrition.vitaminB1 }}mg</td>
+        <td class="text-right"></td>
+    </tr>
+    <tr>
+        <td class="indent-1">Vitamin B2:</td>
+        <td class="text-right">{{ nutrition.vitaminB2 }}mg</td>
+        <td class="text-right"></td>
+    </tr>
+    <tr>
+        <td class="indent-1">Vitamin B6:</td>
+        <td class="text-right">{{ nutrition.vitaminB6 }}mg</td>
+        <td class="text-right">{{ (nutrition.vitaminB6 / dav.vitaminB6 * 100) | number_format(0) }}%</td>
+    </tr>
+    <tr>
+        <td class="indent-1">Vitamin B12:</td>
+        <td class="text-right">{{ nutrition.vitaminB12 }}&mu;g</td>
+        <td class="text-right">{{ (nutrition.vitaminB12 / dav.vitaminB12 * 100) | number_format(0) }}%</td>
+    </tr>
+    <tr>
+        <td class="indent-1">Vitamin C:</td>
+        <td class="text-right">{{ nutrition.vitaminC }}mg</td>
+        <td class="text-right">{{ (nutrition.vitaminC / dav.vitaminC * 100) | number_format(0) }}%</td>
+    </tr>
+    <tr>
+        <td class="indent-1">Vitamin D:</td>
+        <td class="text-right">{{ nutrition.vitaminD }}&mu;g</td>
+        <td class="text-right">{{ (nutrition.vitaminD / dav.vitaminD * 100) | number_format(0) }}%</td>
+    </tr>
+    <tr>
+        <td class="indent-1">Vitamin E:</td>
+        <td class="text-right">{{ nutrition.vitaminE }}mg</td>
+        <td class="text-right">{{ (nutrition.vitaminE / dav.vitaminE * 100) | number_format(0) }}%</td>
+    </tr>
+    {#
+    <tr>
+        <th>Retinol Equivalent:</th>
+        <td class="text-right">{{ nutrition.retinolEquiv }}&mu;g</td>
+        <td class="text-right"></td>
+    </tr>
+    <tr>
+        <th>&beta;-Carotene:</th>
+        <td class="text-right">{{ nutrition.betaCarotene }}&mu;g</td>
+        <td class="text-right"></td>
+    </tr>
+    <tr>
+        <th>Niacin:</th>
+        <td class="text-right">{{ nutrition.niacin }}mg</td>
+        <td class="text-right">{{ (nutrition.niacin / dav.niacin * 100) | number_format(0) }}%</td>
+    </tr>
+    <tr>
+        <th>Folate:</th>
+        <td class="text-right">{{ nutrition.folate }}&mu;g</td>
+        <td class="text-right">{{ (nutrition.folate / dav.folate * 100) | number_format(0) }}%</td>
+    </tr>
+    <tr>
+        <th>Pantothenic Acid:</th>
+        <td class="text-right">{{ nutrition.pantothenicAcid }}&mu;g</td>
+        <td class="text-right">{{ (nutrition.pantothenicAcid / dav.ph * 100) | number_format(0) }}%</td>
+    </tr>
+    #}
+    <tr class="separator"><td colspan="3"></td></tr>
+    <tr>
+        <th>Minerals</th>
+        <td></td>
+        <td class="text-right">% DV</td>
+    </tr>
+    <tr>
+        <td class="indent-1">Sodium:</td>
+        <td class="text-right">{{ nutrition.sodium }}mg</td>
+        <td class="text-right">{{ (nutrition.sodium / dav.sodium * 100) | number_format(0) }}%</td>
+    </tr>
+    <tr>
+        <td class="indent-1">Potassium:</td>
+        <td class="text-right">{{ nutrition.potassium }}mg</td>
+        <td class="text-right">{{ (nutrition.potassium / dav.potassium * 100) | number_format(0) }}%</td>
+    </tr>
+    <tr>
+        <td class="indent-1">Chloride:</td>
+        <td class="text-right">{{ nutrition.chloride }}mg</td>
+        <td class="text-right">{{ (nutrition.chloride / dav.chloride * 100) | number_format(0) }}%</td>
+    </tr>
+    <tr>
+        <td class="indent-1">Calcium:</td>
+        <td class="text-right">{{ nutrition.calcium }}mg</td>
+        <td class="text-right">{{ (nutrition.calcium / dav.calcium * 100) | number_format(0) }}%</td>
+    </tr>
+    <tr>
+        <td class="indent-1">Magnesium:</td>
+        <td class="text-right">{{ nutrition.magnesium }}mg</td>
+        <td class="text-right">{{ (nutrition.magnesium / dav.magnesium * 100) | number_format(0) }}%</td>
+    </tr>
+    <tr>
+        <td class="indent-1">Posphorous:</td>
+        <td class="text-right">{{ nutrition.phosphorous }}mg</td>
+        <td class="text-right">{{ (nutrition.phosphorous / dav.phosphorous * 100) | number_format(0) }}%</td>
+    </tr>
+    <tr>
+        <td class="indent-1">Iron:</td>
+        <td class="text-right">{{ nutrition.iron }}mg</td>
+        <td class="text-right">{{ (nutrition.iron / dav.iron * 100) | number_format(0) }}%</td>
+    </tr>
+    <tr>
+        <td class="indent-1">Iodine:</td>
+        <td class="text-right">{{ nutrition.iodine }}&mu;g</td>
+        <td class="text-right">{{ (nutrition.iodine / dav.iodine * 100) | number_format(0) }}%</td>
+    </tr>
+    <tr>
+        <td class="indent-1">Zinc:</td>
+        <td class="text-right">{{ nutrition.zinc }}mg</td>
+        <td class="text-right">{{ (nutrition.zinc / dav.zinc * 100) | number_format(0) }}%</td>
+    </tr>
+    <tr class="separator"><td colspan="3"></td></tr>
+    <tr class="separator"><td colspan="3"></td></tr>
     </tbody>
 </table>

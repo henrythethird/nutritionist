@@ -37,6 +37,7 @@ class Day implements PositionCollectionInterface
      *     cascade={"persist", "remove"},
      *     orphanRemoval=true
      * )
+     * @ORM\OrderBy({"type" = "DESC"})
      */
     private $positions;
 

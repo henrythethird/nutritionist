@@ -1,0 +1,27 @@
+parameters:
+    dav:
+        calories: 2000
+        fat: 65
+        fattyAcidsSaturated: 20
+        cholesterol: 300
+        sodium: 2400
+        potassium: 3500
+        carbs: 300
+        fibres: 25
+        protein: 50
+        vitaminA: 5000
+        vitaminC: 60
+        calcium: 1000
+        iron: 18
+        vitaminD: 400
+        vitaminE: 30
+        niacin: 20
+        vitaminB6: 2
+        folate: 400
+        vitaminB12: 6
+        pantothenicAcid: 10
+        phosphorous: 1000
+        iodine: 150
+        magnesium: 400
+        zinc: 15
+        chloride: 3400

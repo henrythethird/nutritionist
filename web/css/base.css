@@ -33,3 +33,27 @@ td {
 .center {
 
 }
+
+
+
+
+table.nutrition_table {
+    display: inline-block;
+}
+
+table.nutrition_table tr {
+    border: 1px solid black;
+}
+
+table.nutrition_table td, table.nutrition_table th {
+    padding: 0 10px;
+}
+
+table.nutrition_table tr.separator {
+    height: 4px;
+    background-color: black;
+}
+
+table.nutrition_table td.indent-1 {
+    padding-left: 25px;
+}

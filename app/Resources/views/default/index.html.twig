@@ -2,9 +2,10 @@
 
 {% block content %}
     <h1>Weeks</h1>
-    <ul>
-    {% for week in weeks %}
-        <li>
+
+    <div>
+    {% for week in weeks if week.days|length %}
+        <div>
             {{ week.year }} - Week {{ week.weekNumber }}
             <ul>
             {% for day in week.days %}
@@ -15,7 +16,7 @@
                 </li>
             {% endfor %}
             </ul>
-        </li>
+        </div>
     {% endfor %}
-    </ul>
+    </div>
 {% endblock %}
