@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <h1>{{ recipe.name }}</h1>
+    <div class="row">
+        <div class="col-xs-6">
+            <table>
+                <h3>Ingredients</h3>
+            {% for position in recipe.positions %}
+                <tr>
+                    <td style="padding-right: 10px; white-space: nowrap">{{ position.measure.amount }} {{ position.measure.unit }}</td>
+                    <td>
+                        <a href="{{ path("ingredient_show", {id: position.ingredient.id}) }}">
+                            {{ position.ingredient.name }}
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </table>
+        </div>
+        <div class="col-xs-6">
+            {% include 'nutrition/info.html.twig' with {nutrition: recipe.nutrition} %}
+        </div>
+    </div>
+{% endblock %}
