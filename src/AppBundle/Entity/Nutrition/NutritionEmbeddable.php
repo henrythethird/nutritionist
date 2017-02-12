@@ -190,6 +190,42 @@ class NutritionEmbeddable
     private $vitaminE = 0;
 
     /**
+     * @ORM\Column(type="decimal", precision=12, scale=6)
+     * @var float
+     */
+    private $retinolEquiv = 0;
+
+    /**
+     * @ORM\Column(type="decimal", precision=12, scale=6)
+     * @var float
+     */
+    private $betaCarotene = 0;
+
+    /**
+     * @ORM\Column(type="decimal", precision=12, scale=6)
+     * @var float
+     */
+    private $niacin = 0;
+
+    /**
+     * @ORM\Column(type="decimal", precision=12, scale=6)
+     * @var float
+     */
+    private $folate = 0;
+
+    /**
+     * @ORM\Column(type="decimal", precision=12, scale=6)
+     * @var float
+     */
+    private $pantothenicAcid = 0;
+
+    /**
+     * @ORM\Column(type="decimal", precision=12, scale=6)
+     * @var float
+     */
+    private $betaCaroteneActivity = 0;
+
+    /**
      * @return float
      */
     public function getCarbs()
@@ -729,6 +765,114 @@ class NutritionEmbeddable
         return $this;
     }
 
+    /**
+     * @return float
+     */
+    public function getRetinolEquiv()
+    {
+        return $this->retinolEquiv;
+    }
+
+    /**
+     * @param float $retinolEquiv
+     * @return NutritionEmbeddable
+     */
+    public function setRetinolEquiv($retinolEquiv)
+    {
+        $this->retinolEquiv = $retinolEquiv;
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getBetaCarotene()
+    {
+        return $this->betaCarotene;
+    }
+
+    /**
+     * @param float $betaCarotene
+     * @return NutritionEmbeddable
+     */
+    public function setBetaCarotene($betaCarotene)
+    {
+        $this->betaCarotene = $betaCarotene;
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getNiacin()
+    {
+        return $this->niacin;
+    }
+
+    /**
+     * @param float $niacin
+     * @return NutritionEmbeddable
+     */
+    public function setNiacin($niacin)
+    {
+        $this->niacin = $niacin;
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getFolate()
+    {
+        return $this->folate;
+    }
+
+    /**
+     * @param float $folate
+     * @return NutritionEmbeddable
+     */
+    public function setFolate($folate)
+    {
+        $this->folate = $folate;
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getPantothenicAcid()
+    {
+        return $this->pantothenicAcid;
+    }
+
+    /**
+     * @param float $pantothenicAcid
+     * @return NutritionEmbeddable
+     */
+    public function setPantothenicAcid($pantothenicAcid)
+    {
+        $this->pantothenicAcid = $pantothenicAcid;
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getBetaCaroteneActivity()
+    {
+        return $this->betaCaroteneActivity;
+    }
+
+    /**
+     * @param float $betaCaroteneActivity
+     * @return NutritionEmbeddable
+     */
+    public function setBetaCaroteneActivity($betaCaroteneActivity)
+    {
+        $this->betaCaroteneActivity = $betaCaroteneActivity;
+        return $this;
+    }
+
     public function toArray()
     {
         return [
@@ -761,7 +905,13 @@ class NutritionEmbeddable
             'vitaminB12' => $this->getVitaminB12(),
             'vitaminC' => $this->getVitaminC(),
             'vitaminD' => $this->getVitaminD(),
-            'vitaminE' => $this->getVitaminE()
+            'vitaminE' => $this->getVitaminE(),
+            'retinolEquiv' => $this->getRetinolEquiv(),
+            'betaCarotene' => $this->getBetaCarotene(),
+            'niacin' => $this->getNiacin(),
+            'folate' => $this->getFolate(),
+            'pantothenicAcid' => $this->getPantothenicAcid(),
+            'betaCaroteneActivity' => $this->getBetaCaroteneActivity()
         ];
     }
 

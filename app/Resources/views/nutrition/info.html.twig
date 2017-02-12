@@ -132,7 +132,6 @@
         <td class="text-right">{{ nutrition.vitaminE }}mg</td>
         <td class="text-right">{{ (nutrition.vitaminE / dav.vitaminE * 100) | number_format(0) }}%</td>
     </tr>
-    {#
     <tr>
         <th>Retinol Equivalent:</th>
         <td class="text-right">{{ nutrition.retinolEquiv }}&mu;g</td>
@@ -156,9 +155,8 @@
     <tr>
         <th>Pantothenic Acid:</th>
         <td class="text-right">{{ nutrition.pantothenicAcid }}&mu;g</td>
-        <td class="text-right">{{ (nutrition.pantothenicAcid / dav.ph * 100) | number_format(0) }}%</td>
+        <td class="text-right">{{ (nutrition.pantothenicAcid / dav.pantothenicAcid * 100) | number_format(0) }}%</td>
     </tr>
-    #}
     <tr class="separator"><td colspan="3"></td></tr>
     <tr>
         <th>Minerals</th>
