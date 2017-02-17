@@ -1,5 +1,6 @@
 imports:
     - { resource: config_nutrition.yml }
+    - { resource: config_fos_user.yml }
     - { resource: config_sonata.yml }
     - { resource: parameters.yml }
     - { resource: security.yml }
