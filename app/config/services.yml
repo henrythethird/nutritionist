@@ -2,6 +2,12 @@ services:
     app.service.convert:
         class: AppBundle\Service\UnitConvertService
 
+    app.app_nutrition_filter:
+        class: AppBundle\Twig\Extension\NutritionFilter
+        public: false
+        tags:
+            - { name: twig.extension }
+
     app.listener.volume_unit:
         class: AppBundle\Listener\VolumeUnitListener
         arguments: ['@service_container']
