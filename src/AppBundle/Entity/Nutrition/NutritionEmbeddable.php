@@ -10,6 +10,11 @@ use Doctrine\ORM\Mapping as ORM;
 class NutritionEmbeddable
 {
     /**
+     * @ORM\Column(type="string")
+     */
+    private $baseUnit;
+
+    /**
      * @ORM\Column(type="decimal", precision=12, scale=6)
      * @var float
      */
@@ -224,6 +229,29 @@ class NutritionEmbeddable
      * @var float
      */
     private $betaCaroteneActivity = 0;
+
+    public function __construct($baseUnit = "")
+    {
+        $this->baseUnit = $baseUnit;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBaseUnit()
+    {
+        return $this->baseUnit;
+    }
+
+    /**
+     * @param string $baseUnit
+     * @return NutritionEmbeddable
+     */
+    public function setBaseUnit($baseUnit)
+    {
+        $this->baseUnit = $baseUnit;
+        return $this;
+    }
 
     /**
      * @return float
