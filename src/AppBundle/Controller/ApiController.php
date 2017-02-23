@@ -15,7 +15,9 @@ class ApiController extends BaseDavController
     public function recipeTableAction(Recipe $recipe)
     {
         return [
-            'nutrition' => $recipe->getNutrition(),
+            'nutrition' => $recipe->getNutrition()->multiply(
+                $recipe->getNumberOfServings() ? 1/$recipe->getNumberOfServings() : 1
+            ),
             'dav' => $this->getDav()
         ];
     }
